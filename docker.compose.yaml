@@ -1,0 +1,12 @@
+﻿version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5143:5143"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - PORT=5143

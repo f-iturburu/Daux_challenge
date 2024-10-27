@@ -1,0 +1,26 @@
+:root {
+    --bg-red: #b51626;
+    --bg-grey: #4D4E4E;
+    --padding: 8;
+    --radius: 28;
+    --unit: 1px;
+}
+
+*, *:after, *:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.grey-bg {
+    background-color: var(--bg-grey);
+}
+
+.red-bg {
+    background-color: var(--bg-red);
+}
+
+.min-vh-50 {
+    min-height: 50vh;
+}
