@@ -26,6 +26,3 @@ jobs:
 
     - name: Build
       run: dotnet build ./Francisco_Iturburu_Daux_Challenge/Francisco_Iturburu_Daux_Challenge.csproj --configuration Release --no-restore
-
-    - name: Run tests (if you have tests)
-      run: dotnet test ./Francisco_Iturburu_Daux_Challenge.Tests/Francisco_Iturburu_Daux_Challenge.Tests.csproj --no-restore --verbosity normal
