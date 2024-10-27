@@ -4,7 +4,7 @@
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-8.0-blue)
 [![Deploy on Render](https://img.shields.io/badge/Deploy-Render-blue)](https://daux-challenge.onrender.com/login)
 
-This project is a .NET 8 ASP.NET Core application built to handle a mock authenticatio challenge. The app is deployed on Render and accessible at [https://daux-challenge.onrender.com/login](https://daux-challenge.onrender.com/login).
+This project is a .NET 8 ASP.NET Core application built to handle a mock authentication challenge. The app is deployed on Render and accessible at [https://daux-challenge.onrender.com/login](https://daux-challenge.onrender.com/login).
 
 ## Project Structure
 
@@ -52,7 +52,7 @@ The solution consists of two main projects:
 3. **Run the application**:
 
     ```bash
-    dotnet run --project Daux_Challenge
+    dotnet run --project Francisco_Iturburu_Daux_Challenge
     ```
 
 ### Docker Setup
