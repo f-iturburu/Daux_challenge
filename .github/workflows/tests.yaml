@@ -1,0 +1,36 @@
+name: .NET Tests
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Clean the project
+      run: dotnet clean ./Services.Tests/Services.Tests.csproj
+
+    - name: Restore dependencies
+      run: dotnet restore ./Services.Tests/Services.Tests.csproj
+
+    - name: Build
+      run: dotnet build ./Services.Tests/Services.Tests.csproj --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test ./Services.Tests/Services.Tests.csproj --configuration Release --no-build --verbosity normal
