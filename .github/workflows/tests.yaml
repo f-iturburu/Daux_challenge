@@ -16,15 +16,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.0.x'  
 
     - name: Set environment variables
       run: echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> $GITHUB_ENV
+
+    - name: Verify environment variable
+      run: echo "API_BASE_URL is set to $API_BASE_URL" 
 
     - name: Clean the project
       run: dotnet clean ./Services.Tests/Services.Tests.csproj
