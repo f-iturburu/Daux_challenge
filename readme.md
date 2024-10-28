@@ -71,7 +71,7 @@ The solution consists of two main projects:
 
 ### Configuration
 
-The application requires an API base URL specified in appsettings.json or as an environment variable ApiBaseUrl. For production deployments on Render, set this variable in the Render dashboard.
+The application requires an API base URL specified in appsettings.json or as an environment variable ApiBaseUrl.
 
 ```JSON
 {
