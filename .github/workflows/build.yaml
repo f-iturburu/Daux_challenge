@@ -1,28 +1,28 @@
 name: .NET Build
 
 on:
-  push:
-    branches:
-      - dev  
-  pull_request:
-    branches:
-      - dev
+    push:
+        branches:
+            - dev
+    pull_request:
+        branches:
+            - dev
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '8.0.x' 
+            - name: Setup .NET SDK
+              uses: actions/setup-dotnet@v2
+              with:
+                  dotnet-version: "8.0.x"
 
-    - name: Restore dependencies
-      run: dotnet restore ./Francisco_Iturburu_Daux_Challenge/Francisco_Iturburu_Daux_Challenge.csproj
+            - name: Restore dependencies
+              run: dotnet restore ./Francisco_Iturburu_Daux_Challenge/Francisco_Iturburu_Daux_Challenge.csproj
 
-    - name: Build
-      run: dotnet build ./Francisco_Iturburu_Daux_Challenge/Francisco_Iturburu_Daux_Challenge.csproj --configuration Release --no-restore
+            - name: Build
+              run: dotnet build ./Francisco_Iturburu_Daux_Challenge/Francisco_Iturburu_Daux_Challenge.csproj --configuration Release --no-restore
