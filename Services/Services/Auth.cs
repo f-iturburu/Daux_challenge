@@ -15,7 +15,7 @@ namespace Services.Services
         private readonly IAsyncExceptionHandler _exceptionHandler;
         public AuthRequest(IHttpClientFactory factory, IAsyncExceptionHandler exceptionHandler)
         {
-            _factory = factory;
+            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             _exceptionHandler = exceptionHandler;
         }
 
@@ -36,19 +36,19 @@ namespace Services.Services
             }, $"Error in API call to {endpoint}");
         }
 
-        private HttpClient CreateHttpClient(string encodedValue)
+        internal HttpClient CreateHttpClient(string encodedValue)
         {
             var client = _factory.CreateClient("auth");
             client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", encodedValue);
             return client;
         }
 
-        private async Task HandleHttpResponseAsync(HttpResponseMessage response, string endpoint)
+        internal async Task HandleHttpResponseAsync(HttpResponseMessage response, string endpoint)
         {
             await _exceptionHandler.HandleHttpResponseAsync(response, $"Error in API call to {endpoint}");
         }
 
-        private async Task<Response> ParseResponseAsync(HttpResponseMessage response)
+        internal async Task<Response> ParseResponseAsync(HttpResponseMessage response)
         {
             var res = await response.Content.ReadFromJsonAsync<Response>();
             return res ?? new Response();
