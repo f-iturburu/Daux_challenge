@@ -20,23 +20,28 @@ namespace Services.Tests
 
         public AuthRequestTests()
         {
-            var projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\"));
-            var configFilePath = Path.Combine(projectRoot, "Francisco_Iturburu_Daux_Challenge", "bin", "Debug", "net8.0", "appsettings.json");
+            _baseAddress = Environment.GetEnvironmentVariable("API_BASE_URL");
 
-            if (!File.Exists(configFilePath))
-            {
-                throw new FileNotFoundException($"Configuration file not found at: {configFilePath}", configFilePath);
-            }
-
-            var config = new ConfigurationBuilder()
-                .SetBasePath(projectRoot)
-                .AddJsonFile(configFilePath, optional: false, reloadOnChange: true)
-                .Build();
-
-            _baseAddress = config["ApiBaseUrl"];
             if (string.IsNullOrEmpty(_baseAddress))
             {
-                throw new InvalidOperationException("ApiBaseUrl is not set in the appsettings.json");
+                var projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\"));
+                var configFilePath = Path.Combine(projectRoot, "Francisco_Iturburu_Daux_Challenge", "bin", "Debug", "net8.0", "appsettings.json");
+
+                if (!File.Exists(configFilePath))
+                {
+                    throw new FileNotFoundException($"Configuration file not found at: {configFilePath}", configFilePath);
+                }
+
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(projectRoot)
+                    .AddJsonFile(configFilePath, optional: false, reloadOnChange: true)
+                    .Build();
+
+                _baseAddress = config["ApiBaseUrl"];
+                if (string.IsNullOrEmpty(_baseAddress))
+                {
+                    throw new InvalidOperationException("ApiBaseUrl is not set in the appsettings.json");
+                }
             }
 
             _mockFactory = new Mock<IHttpClientFactory>();
@@ -111,6 +116,7 @@ namespace Services.Tests
 
             await Assert.ThrowsAsync<HttpRequestException>(async () => await _mockExceptionHandler.Object.CatchAsync(func, "Test Error"));
         }
+
         [Fact]
         public async Task HandleHttpResponseAsync_ShouldCallExceptionHandler_WhenResponseIsNotSuccessful()
         {
