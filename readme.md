@@ -25,8 +25,7 @@ The solution consists of two main projects:
 ### Prerequisites
 
 -   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
--   [Docker](https://www.docker.com/)
--   Optional: [Render account](https://render.com/) for deployment
+-   Optional: [Docker](https://www.docker.com/)
 
 ### Installation
 
